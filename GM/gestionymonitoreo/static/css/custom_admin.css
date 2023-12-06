@@ -1,0 +1,15 @@
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* Añade un retraso de 500 ms (0.5 segundos) para el autocompletado */
+    transition-delay: 10s;
+}
+/* Centrar el encabezado */
+#header {
+    text-align: center;
+}
+
+#header h1 {
+    display: inline-block;
+    margin: 0 auto;
+}
