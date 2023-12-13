@@ -7,7 +7,7 @@ class FolioAdmin(admin.ModelAdmin):
     fields = ('folio_id', 'motivo', 'usuario', 'descripcion', 'fecha', 'hora', 'ubicacion')
     exclude = ['creador']
     list_display = ('folio_id', 'motivo', 'usuario', 'descripcion', 'fecha', 'ubicacion', 'nombre_sector', 'creador',)
-    #ordering = ['fecha']
+    # ordering = ['fecha']
     def nombre_sector(self, obj):
         return obj.ubicacion.sector  # Accedemos al campo 'sector' del modelo relacionado
 

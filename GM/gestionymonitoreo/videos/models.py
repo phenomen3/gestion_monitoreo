@@ -22,7 +22,7 @@ class Folio(models.Model):
     motivo = models.ForeignKey(Submotivo, on_delete=models.DO_NOTHING, null=True, blank=True,related_name='motivovideos')
     videos = models.ManyToManyField('Video', related_name='foliosvideos')
     class Meta:
-        ordering = ['fecha']
+        ordering = ['-fecha'] #orden por default ASC, para hacerlo DESC elimina esta linea o usa '-fecha'
         verbose_name = 'Folio'
         verbose_name_plural = 'Folios'
 

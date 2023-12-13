@@ -3,7 +3,7 @@ from .models import Folio
 from .forms import FolioForm
 
 def index(request):
-    folios = Folio.objects.all().order_by('fecha')
+    folios = Folio.objects.all().order_by('fecha') #ordena por fecha
     return render(request, 'folios/index.html', {'folios': folios})
 
 def create_folio(request):
