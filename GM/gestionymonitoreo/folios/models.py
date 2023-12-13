@@ -37,17 +37,22 @@ class Folio(models.Model):
         validators=[validate_folio_id],
         help_text="El formato debe ser C5/yyyymmdd/nnnnn")
     motivo = models.ForeignKey('Submotivo', on_delete=models.DO_NOTHING, null=True, blank=True)
-    usuario = models.CharField(max_length=100)  # Campo de usuario como texto
-    descripcion = models.TextField()
+    usuario = models.CharField(max_length=50)  # Campo de usuario como texto
+    descripcion = models.TextField(max_length=500,help_text="Máximo 500 caracteres")
     fecha = models.DateField()
     hora = models.TimeField()
     ubicacion = models.ForeignKey('Ubicacion', on_delete=models.DO_NOTHING)
 
+    
     def __str__(self):
-        return self.folio_id
+        return self.descripcion    
+        # max_length = 11
+        # truncated_description = obj.descripcion[:max_length] if len(obj.descripcion) > max_length else obj.descripcion
+        # return f"{self.folio_id} - {truncated_description}"
+
     class Meta:
-        verbose_name = 'Folio'
-        verbose_name_plural = 'Folios'
+       verbose_name = 'Folio'
+       verbose_name_plural = 'Folios'
         
 
 
