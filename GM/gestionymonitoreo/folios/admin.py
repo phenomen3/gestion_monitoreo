@@ -15,12 +15,10 @@ class FolioAdmin(admin.ModelAdmin):
     list_filter = ('creador', 'fecha')  # Deja solo los campos apropiados para filtrar
     search_fields = ('folio_id','motivo__nombre', 'descripcion', 'usuario')
 
-    def short_description(self, obj):
-        max_length = 50  # You can adjust this value
-        return f"{obj.folio.descripcion[:max_length]}..." if len(obj.folio.descripcion) > max_length else obj.folio.descripcion
-    short_description.short_description = 'Descripcion'  # Set the column header in the admin
-    
-    
+    # def short_description(self, obj):
+    #     max_length = 50  # You can adjust this value
+    #     return f"{obj.folio.descripcion[:max_length]}..." if len(obj.folio.descripcion) > max_length else obj.folio.descripcion
+    # short_description.short_description = 'Descripcion'  # Set the column header in the admin
 
     list_per_page = 20
 
@@ -30,9 +28,17 @@ class FolioAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+class SubmotivoAdmin(admin.ModelAdmin):
+    model = Submotivo
+    fields=('nombre', 'motivo','id')
+    list_display = ('nombre', 'motivo', 'id')
+    search_fields = ('motivo__nombre','nombre')
+    # Submotivo.objects.filter(autor__nombre__icontains="Smith")
+
+
 admin.site.register(Folio, FolioAdmin)
-# admin.site.register(Motivo)
-admin.site.register(Submotivo)
+admin.site.register(Motivo)
+admin.site.register(Submotivo, SubmotivoAdmin)
 admin.site.register(Ubicacion)
 # admin.site.register(Alcaldia)
 # admin.site.register(C2)
